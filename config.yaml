@@ -1,0 +1,23 @@
+model:
+  classes: 20
+  input_size: [320,240] # size of the network input
+  architecture: "A"
+
+
+train:
+  batch_size: 4
+  steps_per_epoch: 100
+  epochs: 1
+
+
+  augmenter:
+    crop_probability: 0.3
+    blur_probability: 0.1
+    affine_probability: 0.5
+
+
+  dataset:
+    name: "cityscapes"
+    path: "."
+
+  preprocessor:

@@ -1,0 +1,3 @@
+[submodule "thirdparty/cityscapesScripts"]
+	path = thirdparty/cityscapesScripts
+	url = git@github.com:mcordts/cityscapesScripts.git

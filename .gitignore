@@ -1,7 +1,13 @@
+# folders that will be created when running training
 eval/
 logs/
+*.h5
+
+
+# misc
 
 .idea/
+
 
 
 # Created by https://www.gitignore.io/api/python,pycharm

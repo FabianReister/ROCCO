@@ -1,11 +1,11 @@
 from cv2 import imread, IMREAD_ANYCOLOR, IMREAD_ANYDEPTH, IMREAD_GRAYSCALE
 from numpy import asarray
 
-class TrainDataProducer:
-    def __init__(self, config, dataset, augmenter, preprocessor):
+
+class ValidDataProducer():
+    def __init__(self, config, dataset, preprocessor):
         self._config = config
         self._dataset = dataset
-        self._augmenter = augmenter
         self._preprocessor = preprocessor
 
     def __iter__(self):
@@ -26,7 +26,6 @@ class TrainDataProducer:
         for i in range(self._config["batch_size"]):
             img, label = self.load_next_img_and_label()
             x, y = self._preprocessor.process(img, label)
-            #x, y = self._augmenter.augment(x, y)
 
             from keras.utils import to_categorical
 
@@ -35,10 +34,8 @@ class TrainDataProducer:
             y[y >= 20] = 19
 
 
-
             import numpy as np
             y = np.expand_dims(y, 3)
-            #print np.max(y.ravel())
 
             y = to_categorical(y)
 
@@ -46,4 +43,3 @@ class TrainDataProducer:
             Y.append(y) # need to add first index (channel)
 
         return asarray(X), asarray(Y)
-

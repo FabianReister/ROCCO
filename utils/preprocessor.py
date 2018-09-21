@@ -17,7 +17,7 @@ class Preprocessor:
         return img
 
     def _resize(self, img, type):
-        width, height = self._config["img_size"]
+        width, height = self._config["input_size"]
         return resize(img, (width, height), type)
 
     @staticmethod

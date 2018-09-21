@@ -1,6 +1,7 @@
 from .task import Task
 
-from utils.train_data_producer import TrainDataProducer, ValidDataProducer
+from utils.train_data_producer import TrainDataProducer
+from utils.validation_data_producer import ValidDataProducer
 from utils.augmenter import Augmenter
 from utils.preprocessor import Preprocessor
 from datasets import DATASETS

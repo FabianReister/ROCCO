@@ -66,7 +66,7 @@ class TaskEvaluate(Task):
             prediction_filenames.append(prediction_filename)
 
         # finally run evaluation
-        from thirdparty.cityscapesscripts.evaluation.evalPixelLevelSemanticLabeling import evaluateImgLists
+        from cityscapesscripts.evaluation.evalPixelLevelSemanticLabeling import evaluateImgLists
         args = {
             'quiet': True
         }

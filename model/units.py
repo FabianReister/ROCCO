@@ -53,7 +53,7 @@ def FullResolutionResidualUnit(z, y, n_kernels, pooling_size):
     y = g
 
     h = Conv2D(32, (1, 1), padding='same')(g)
-    h = UpSampling2D(size=(pooling_size, pooling_size))(h)
+    h = UpSampling2D(size=(pooling_size, pooling_size), interpolation='bilinear')(h)
 
     z = add([z, h])
 

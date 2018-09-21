@@ -1,13 +1,15 @@
 model:
   classes: 20
-  input_size: [320,240] # size of the network input
+  input_size: [512,256] # size of the network input
   architecture: "A"
 
+  weights: "frrn.h5"
 
 train:
-  batch_size: 4
-  steps_per_epoch: 100
-  epochs: 1
+  batch_size: 2
+  steps_per_epoch: 1000
+  epochs: 10
+  validation_steps: 100
 
 
   augmenter:
@@ -18,6 +20,19 @@ train:
 
   dataset:
     name: "cityscapes"
-    path: "."
+    path: "/media/fabi/a5c9fb71-4a59-421d-82a0-49a31c2b3013/datasets/cityscapes"
 
   preprocessor:
+    input_size: [512,256] # size of the network input
+
+
+evaluate:
+  dataset:
+    name: "cityscapes"
+    path: "/media/fabi/a5c9fb71-4a59-421d-82a0-49a31c2b3013/datasets/cityscapes"
+
+  eval_dir: "eval"
+
+
+  preprocessor:
+    input_size: [512,256] # size of the network input

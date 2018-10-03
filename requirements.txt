@@ -4,3 +4,4 @@ tensorflow-gpu
 git+https://github.com/mcordts/cityscapesScripts.git@master
 imgaug
 pyyaml
+glob2

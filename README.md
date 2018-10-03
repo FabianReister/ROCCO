@@ -1,11 +1,11 @@
-# SemSegTrain - Framework to train neural networks for Semantic Segmentation
+# ROCCO - Framework to train neural networks for Semantic Segmentation
 
 ## Motivation
 
 This is a modular framework to ease training of neural networks for semantic segmentation. 
 A separation of network design, training and evaluation is reflected by the software architecture. 
 All parameters to describe the training procedure and evaluation phase are stored in a YAML config file and serve for documentation and reproduction of results.
-Therefore, changing the network architecture will affect only a single line in the config file. 
+Therefore, changing the network architecture will ideally affect only a single line in the config file. 
 
 New networks can easily be integrated into the framework as well as custom datasets, augmentation strategies etc. See the section **Design Principles** for further details. 
 

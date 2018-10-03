@@ -87,7 +87,3 @@ class EndoscopicInstrumentSegmentation(Dataset):
         suffix = self.suffix_for_label_filename(img_filename)
         return img_filename[:-4] + suffix
 
-
-if __name__ == '__main__':
-    config = {"path": "/tmp/eis"}
-    ds = EndoscopicInstrumentSegmentation(config)

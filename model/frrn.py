@@ -67,7 +67,7 @@ class FullResolutionResidualNetwork_A(FullResolutionResidualNetworkBase):
             x = ResidualUnit(x, 48)
 
         x = Conv2D(classes, (1, 1))(x)
-        x = Activation('sigmoid')(x)
+        #x = Activation('sigmoid')(x)
 
         self._model = Model(inputs=input_layer, outputs=x)
 

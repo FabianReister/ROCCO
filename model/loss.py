@@ -1,4 +1,4 @@
-
+from keras.losses import sparse_categorical_crossentropy
 
 
 def custom_loss(y_true, y_pred):

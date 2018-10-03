@@ -6,7 +6,9 @@ class EndoscopicInstrumentSegmentation(Dataset):
     """
 
     See
+    http://opencas.webarchiv.kit.edu/?q=InstrumentCrowd
 
+    Download link
     http://opencas.webarchiv.kit.edu/data/AnnotatedImages.zip
 
     """

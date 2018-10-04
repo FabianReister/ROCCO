@@ -3,7 +3,7 @@ from abc import abstractmethod
 
 class Task(object):
     @abstractmethod
-    def run(self, model):
+    def run(self, model, log_dir):
         pass
 
     @staticmethod

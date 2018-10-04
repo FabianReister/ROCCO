@@ -29,10 +29,13 @@ class TaskEvaluate(Task):
 
         return os.path.join(eval_dir, relative_label_filename)
 
-    def run(self, model):
+    def run(self, model, log_dir):
         test_dataset = DATASETS[self._config["dataset"]["name"]](self._config["dataset"], 'test', loop=False)
 
         preprocessor = Preprocessor(self._config["preprocessor"])
+
+        from evaluation import EVALUATORS
+        evaluator = EVALUATORS[self._config["evaluator"]]
 
         gt_filenames = []
         prediction_filenames = []
@@ -65,11 +68,4 @@ class TaskEvaluate(Task):
             gt_filenames.append(label_filename)
             prediction_filenames.append(prediction_filename)
 
-        # finally run evaluation
-        from cityscapesscripts.evaluation.evalPixelLevelSemanticLabeling import evaluateImgLists
-        args = {
-            'quiet': True
-        }
-        confusion_matrix = evaluateImgLists(prediction_filenames, gt_filenames, args)
-
-        np.savetxt("{}/confusion_matrix.csv".format(self._config["eval_dir"]), confusion_matrix)
+        evaluator.run(prediction_filenames, gt_filenames)

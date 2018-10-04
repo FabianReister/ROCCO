@@ -1,4 +1,4 @@
-# ROCCO - Framework to train neural networks for Semantic Segmentation
+# ROCCO - Framework to train Neural Networks for Semantic Segmentation
 
 ## Motivation
 

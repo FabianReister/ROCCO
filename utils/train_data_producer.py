@@ -30,9 +30,6 @@ class TrainDataProducer:
 
             y = self._dataset.to_categorical(y)
 
-            #import numpy as np
-            #y = np.expand_dims(y, 3)
-
             X.append(x)
             Y.append(y) # need to add first index (channel)
 

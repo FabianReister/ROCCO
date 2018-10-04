@@ -13,7 +13,7 @@ class EndoscopicInstrumentSegmentation(Dataset):
 
     """
 
-    def __init__(self, config, loop=True):
+    def __init__(self, config, type, loop=True):
         Dataset.__init__(self, loop)
         self._config = config
 

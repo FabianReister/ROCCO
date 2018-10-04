@@ -37,7 +37,24 @@ def main():
     # now run one of the registered tasks e.g. training or prediction
     task = TASKS[args.task](config[args.task])
 
-    task.run(frrn.model())
+    import datetime
+    log_dir = "./logs/{}".format(datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S"))
+
+    import os
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
+    elif task == 'train':
+        print("The log directory already exists!")
+        exit(-1)
+
+    from shutil import copy2
+    if config.has_key("weights"):
+        copy2(config["weights"], os.path.join(log_dir, "base_model.h5"))
+
+    # copy the yaml config to the log directory to know how to reproduce results
+    copy2(args.config, os.path.join(log_dir, 'config.yaml'))
+
+    task.run(frrn.model(), log_dir)
 
 
 if __name__ == "__main__":

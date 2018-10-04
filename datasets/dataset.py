@@ -28,3 +28,12 @@ class Dataset(object):
 
         return self._dataset[self._idx]
 
+    @abstractmethod
+    def to_categorical(self, label_img):
+        """
+        Given an RGB or grayscale label image, returns a one hot encoded image
+        :param label_img: the label image as it is stored on disk
+        :return:
+        """
+        pass
+

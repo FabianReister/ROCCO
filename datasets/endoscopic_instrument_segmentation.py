@@ -87,3 +87,13 @@ class EndoscopicInstrumentSegmentation(Dataset):
         suffix = self.suffix_for_label_filename(img_filename)
         return img_filename[:-4] + suffix
 
+    def to_categorical(self, label_img):
+        if len(label_img.shape) == 3:  # color image
+            # grab the red channel where background is 0 and foreground 255
+            label_img = label_img[0, :, :].ravel()
+
+        # binary image. set foreground to 1
+        label_img[label_img >= 1] = 1
+
+        from keras.utils import to_categorical
+        return to_categorical(label_img)

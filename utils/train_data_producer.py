@@ -28,19 +28,10 @@ class TrainDataProducer:
             x, y = self._preprocessor.process(img, label)
             #x, y = self._augmenter.augment(x, y)
 
-            from keras.utils import to_categorical
+            y = self._dataset.to_categorical(y)
 
-            # The void class is 255 in this case. This will result in a very large categorical matrix.
-            # Therefore set 255 to the next id after the last valid class, which is 20 in this case.
-            y[y >= 20] = 19
-
-
-
-            import numpy as np
-            y = np.expand_dims(y, 3)
-            #print np.max(y.ravel())
-
-            y = to_categorical(y)
+            #import numpy as np
+            #y = np.expand_dims(y, 3)
 
             X.append(x)
             Y.append(y) # need to add first index (channel)

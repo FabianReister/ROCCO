@@ -42,6 +42,12 @@ class Augmenter:
         self._seq.to_deterministic()
 
         x_aug = self._seq.augment_images(x)
+
+        # augmenter expects image to have format (width, height, channels)
+        if len(y.shape) == 2:
+            import numpy as np
+            y = np.expand_dims(y, 3)
+
         y_aug = self._seq.augment_images(y, hooks=self._hooks_semantic)
 
-        return x_aug, y_aug
+        return x_aug, y_aug.squeeze()

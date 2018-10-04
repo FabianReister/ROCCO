@@ -26,7 +26,7 @@ class TrainDataProducer:
         for i in range(self._config["batch_size"]):
             img, label = self.load_next_img_and_label()
             x, y = self._preprocessor.process(img, label)
-            #x, y = self._augmenter.augment(x, y)
+            x, y = self._augmenter.augment(x, y)
 
             y = self._dataset.to_categorical(y)
 

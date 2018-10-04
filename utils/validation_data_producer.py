@@ -27,17 +27,7 @@ class ValidDataProducer():
             img, label = self.load_next_img_and_label()
             x, y = self._preprocessor.process(img, label)
 
-            from keras.utils import to_categorical
-
-            # The void class is 255 in this case. This will result in a very large categorical matrix.
-            # Therefore set 255 to the next id after the last valid class, which is 20 in this case.
-            y[y >= 20] = 19
-
-
-            import numpy as np
-            y = np.expand_dims(y, 3)
-
-            y = to_categorical(y)
+            y = self._dataset.to_categorical(y)
 
             X.append(x)
             Y.append(y) # need to add first index (channel)

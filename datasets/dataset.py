@@ -37,3 +37,9 @@ class Dataset(object):
         """
         pass
 
+    def num_samples(self):
+        """
+
+        :return: the number of samples that are included in the dataset
+        """
+        return len(self._dataset)

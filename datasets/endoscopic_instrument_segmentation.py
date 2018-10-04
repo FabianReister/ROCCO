@@ -31,6 +31,9 @@ class EndoscopicInstrumentSegmentation(Dataset):
         # [a-zA-Z0-9]+_img[0-9]+
         img_files = glob(img_paths)
 
+        # make sure that the image filenames are always in the same order
+        img_files.sort()
+
         assert (len(img_files) > 0)
 
         print("Found %d images" % len(img_files))
@@ -44,6 +47,23 @@ class EndoscopicInstrumentSegmentation(Dataset):
             print("The label file %s does not exist" % f)
 
         self._dataset = zip(img_files, label_files)
+
+        import numpy as np
+        np.random.seed(self._config["np_seed"])
+
+        indices = range(0, len(img_files))
+        np.random.shuffle(indices)
+
+        if type == 'train':
+            indices = indices[0:int(0.8*len(indices))]
+        if type == 'val':
+            indices = indices[int(0.8*len(indices)):]
+
+        # In this case, there are no separate train and validation datasets.
+        # Therefore, we need to split the full dataset somehow.
+        # As the dataset is fairly small, a split of 80-20% seems reasonable.
+
+        self._dataset = [self._dataset[idx] for idx in indices]
 
     @staticmethod
     def name():
